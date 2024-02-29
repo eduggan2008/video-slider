@@ -1,0 +1,136 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    overflow: hidden;
+}
+
+.landing {
+    width: 100%;
+    height: 100vh;
+}
+
+.slider {
+    width: inherit;
+    height: inherit;
+    background-color: #1f3346;
+}
+
+.slide {
+    width: 20rem;
+    height: 15rem;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    border-radius: 1rem;
+}
+
+.active.slide {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    border-radius: 0;
+    z-index: 5;
+    transition: top 0.5s, left 0.5s, width 1s, height 1s, opacity 0.5s;
+}
+
+.slide:not(.active) {
+    top: calc(100% - 20rem);
+    left: calc(100% - (var(--i) * 22rem));
+    opacity: 0.5;
+    cursor: pointer;
+    z-index: 10;
+    transition: top 1s, left 1s, width 0.5s, height 0.5s, opacity 0.5s;
+}
+
+.slide:not(.active):hover {
+    opacity: 0.9;
+}
+
+.slide::before {
+    content: "\f01d";
+    font-family: "Font Awesome 6 free";
+    font-size: 3rem;
+    color: #fff;
+    position: absolute;
+    z-index: 5;
+    transition: opacity 1s;
+}
+
+.active.slide::before {
+    opacity: 0;
+    transition: opacity 0.5s;
+
+}
+
+video {
+    width: inherit;
+    height: inherit;
+    object-fit: cover;object-position: center;
+    border-radius: inherit;
+    filter: brightness(60%);
+}
+
+.slide-heading {
+    position: absolute;
+    top: 5rem;
+    left: 5rem;
+    font-size: clamp(4rem, 10cqi, 15rem);
+    text-transform: uppercase;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.431);
+    transition: opacity 1s 0.5s, visibility 1s 0.5s;
+}
+
+.slide:not(.active) .slide-heading {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+
+@media (max-width: 1200px) {
+    .slide {
+        width: 14rem;
+        height: 10rem;
+    }
+    .slide:not(.active) {
+        top: calc(100% - 12rem);
+        left: calc(100% - (var(--i) * 15rem));
+    }
+}
+
+@media (max-width: 850px) {
+    .slide {
+        width: 10rem;
+        height: 9rem;
+    }
+    .slide:not(.active) {
+        top: calc(100% - 11rem);
+        left: calc(100% - (var(--i) * 11rem));
+    }
+}
+
+@media (max-width: 520px) {
+    html {
+        font-size: 45%;
+    }
+    .slide {
+        width: 10rem;
+        height: 8rem;
+    }
+    .slide:not(.active) {
+        top: calc(100% - 10rem);
+        left: calc(100% - (var(--i) * 11rem));
+    }
+}
+
+
